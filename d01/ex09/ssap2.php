@@ -1,28 +1,38 @@
 #!/usr/bin/php
 <?php
+	function compareASCII($a, $b) {
+		$at = iconv('UTF-8', 'ASCII//TRANSLIT', $a);
+		$bt = iconv('UTF-8', 'ASCII//TRANSLIT', $b);
+		return strcmp($at, $bt);
+	}
 
+	$i = 0;
 	$tstr = array();
 	$nstr = array();
+	$sstr = array();
 	unset($argv[0]);
 	foreach ($argv as $arg)
 	{
-		if (is_string($arg))
+		$str = preg_replace("/\s+/", " ", $arg);
+		$tmp = explode(" ", $str);
+		foreach ($tmp as $elem)
 		{
-			$str = preg_replace("/\s+/", " ", $arg);
-			$tmp = explode(" ", $str);
-			foreach ($tmp as $elem)
-			{
-				$tstr[] = $elem;
-			}
-		}
-		else
-		{
-			$nstr[] = $arg;
+			if (is_numeric($elem))
+				$nstr[$i] = $elem;
+			else if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $elem[0]))
+				$sstr[$i] = $elem;
+			else
+				$tstr[$i] = $elem;
+			$i += 1;
 		}
 	}
-	sort($tstr, SORT_NATURAL | SORT_FLAG_CASE);
-	sort($nstr);
-	$t = $tstr + $nstr;
+	asort($tstr, SORT_NATURAL | SORT_FLAG_CASE);
+	uasort($nstr, "compareASCII");
+	uasort($sstr, "compareASCII");
+	print_r($tstr);
+	print_r($nstr);
+	print_r($sstr);
+	$t = $tstr + $nstr + $sstr;
 	foreach ($t as $elem)
 		echo "$elem\n";
 ?>
