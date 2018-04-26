@@ -29,9 +29,6 @@
 	asort($tstr, SORT_NATURAL | SORT_FLAG_CASE);
 	uasort($nstr, "compareASCII");
 	uasort($sstr, "compareASCII");
-	print_r($tstr);
-	print_r($nstr);
-	print_r($sstr);
 	$t = $tstr + $nstr + $sstr;
 	foreach ($t as $elem)
 		echo "$elem\n";
