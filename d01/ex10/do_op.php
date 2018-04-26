@@ -7,7 +7,7 @@
 		$o2 = trim($argv[3]);
 
 		if (!in_array($op, array("+", "-", "/", "%", "*")))
-			echo "invalid operand\n";
+			echo "Incorrect Parameters\n";
 		else {
 			if ($op == "/")
 				$ret = $o1 / $o2;
@@ -23,5 +23,5 @@
 		}
 	}
 	else
-		echo "3 params required\n";
+		echo "Incorrect Parameters\n";
 ?>
