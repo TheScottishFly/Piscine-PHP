@@ -10,7 +10,7 @@
 			echo "'$input' n'est pas un chiffre\n";
 		else
 		{
-			if ($str % 2 == 0)
+			if ($input % 2 == 0)
 				echo "Le chiffre $input est Pair\n";
 			else
 				echo "Le chiffre $input est Impair\n";

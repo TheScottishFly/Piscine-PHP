@@ -4,7 +4,6 @@
 	$tstr = array();
 	$nstr = array();
 	unset($argv[0]);
-	print_r($argv);
 	foreach ($argv as $arg)
 	{
 		if (is_string($arg))
