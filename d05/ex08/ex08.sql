@@ -1,1 +1,2 @@
-SELECT last_name, first_name, CAST(GETDATE() as birthdate) FROM user_card WHERE year(birthdate) = 1989 ORDER BY nom ASC;
+SELECT last_name, first_name, DATE(birthdate) FROM user_card
+WHERE YEAR(birthdate) = 1989 ORDER BY last_name ASC;
