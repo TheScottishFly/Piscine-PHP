@@ -5,6 +5,7 @@
 	unset($argv[0]);
 	foreach ($argv as $arg)
 	{
+		$arg = trim($arg);
 		$str = preg_replace("/\s+/", " ", $arg);
 		$tmp = explode(" ", $str);
 		foreach ($tmp as $elem)

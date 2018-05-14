@@ -3,9 +3,10 @@
 
 	function ft_split($str)
 	{
-		$t = explode(' ', $str);
-		sort($t);
-		return $t;
+		$str = trim($str);
+		$ret = preg_split('/ +/', $str);
+		sort($ret);
+		return $ret;
 	}
 
 ?>
