@@ -18,7 +18,7 @@
 		$tmp = explode(" ", $str);
 		foreach ($tmp as $elem)
 		{
-			if (is_numeric($elem))
+			if (is_numeric($elem[0]))
 				$nstr[$i] = $elem;
 			else if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $elem[0]))
 				$sstr[$i] = $elem;
