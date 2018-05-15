@@ -1,5 +1,5 @@
 #!/usr/bin/php
 <?php
-	if ($argc < 2)
-		exit();
-	echo trim(preg_replace("/[ \t\r]+/", " ", $argv[1])) . "\n";
+if ($argc > 1)
+	echo trim(preg_replace("/\s+/", " ", $argv[1])) . "\n";
+?>
