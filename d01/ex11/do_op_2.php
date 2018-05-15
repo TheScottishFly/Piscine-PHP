@@ -20,8 +20,8 @@
 	
 	if ($argc != 2)
 		exit("Incorrect Parameters\n");
-	$a = preg_split('/\s+/', trim($argv[1]));
-	if (count($a) != 3)
+	$a = preg_split('/(-|\/|%|\*|\+|\s+)/', trim($argv[1]), -1, PREG_SPLIT_NO_EMPTY);
+	if (count($a) != 2)
 		exit("Incorrect Parameters\n");
 	$argv[1] = preg_replace('/\s+/', '', $argv[1]);
 	$op = find_op($argv[1]);
