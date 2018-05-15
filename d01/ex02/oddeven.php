@@ -1,11 +1,11 @@
 #!/usr/bin/php
 <?php
-	$stdin = fopen('php://stdin', 'r');
-	while ($stdin && !feof($stdin))
+	while (1)
 	{
 		echo "Entrez un nombre: ";
-		$input = fgets($stdin);
-		$input = str_replace("\n", "", "$input");
+		$input = trim(fgets(STDIN));
+		if (feof(STDIN) == true)
+			exit("\n");
 		if (!is_numeric($input) || strlen($input) == 0)
 			echo "'$input' n'est pas un chiffre\n";
 		else
@@ -16,5 +16,4 @@
 				echo "Le chiffre $input est Impair\n";
 		}
 	}
-	fclose($stdin);
 ?>

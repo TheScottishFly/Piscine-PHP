@@ -1,48 +1,31 @@
 #!/usr/bin/php
 <?php
-	function find_op($str){
-		for ($i = 0; $i < strlen($str); $i++)
-		{
-			if ($str[$i] == "+")
-				return 1;
-			if ($str[$i] == "-")
-				return 2;
-			if ($str[$i] == "*")
-				return 3;
-			if ($str[$i] == "/")
-				return 4;
-			if ($str[$i] == "%")
-				return 5;
-		}
-		return (0);
-	}
-	
-	if ($argc != 2)
-		exit("Incorrect Parameters\n");
-	$a = preg_split('/(-|\/|%|\*|\+|\s+)/', trim($argv[1]), -1, PREG_SPLIT_NO_EMPTY);
-	if (count($a) != 2)
-		exit("Syntax Error\n");
-	$argv[1] = preg_replace('/\s+/', '', $argv[1]);
-	$op = find_op($argv[1]);
-	if ($op == 0)
-		exit("Syntax Error\n");
-	$arr = preg_split("/(-|\/|%|\*|\+)/", $argv[1], -1, PREG_SPLIT_NO_EMPTY);
-	if(is_numeric($arr[0]) && is_numeric($arr[1]))
-	{
-		if ($op == 1)
-			$res = $arr[0] + $arr[1];
-		else if ($op == 2)
-			$res = $arr[0] - $arr[1];
-		else if ($op == 3)
-			$res = $arr[0] * $arr[1];
-		else if ($op == 4)
-			$res = $arr[0] / $arr[1];
-		else if ($op == 5)
-			$res = $arr[0] % $arr[1];
-		else
-			exit("Syntax Error\n");
-		echo "$res\n";
-	}
+if ($argc == 2)
+{
+	unset($argv[0]);
+	$argv[1] = trim($argv[1]);
+	$tab = preg_split('/(-|\/|%|\*|\+|\s+)/', $argv[1], -1, PREG_SPLIT_NO_EMPTY);
+	$err = 0;
+	$argv[1] = preg_replace('/\s+/', "", $argv[1]);
+	for ($i=0; $i < strlen($argv[1]); $i++)
+		if (!(is_numeric($argv[1][$i])))
+			$err += 1;
+	if (count($tab) != 2 || $err != 1)
+		exit ("Syntax Error\n");
+	if (strchr($argv[1], "+"))
+		$nbr = $tab[0] + $tab[1];
+	else if (strchr($argv[1], "-"))
+		$nbr = $tab[0] - $tab[1];
+	else if (strchr($argv[1], "*"))
+		$nbr = $tab[0] * $tab[1];
+	else if (strchr($argv[1], "/"))
+		$nbr = $tab[0] / $tab[1];
+	else if (strchr($argv[1], "%"))
+		$nbr = $tab[0] % $tab[1];
 	else
-		echo "Syntax Error\n";
+		exit ("Syntax Error\n");
+	echo "$nbr\n";
+}
+else
+	echo "Incorrect Parameters\n";
 ?>

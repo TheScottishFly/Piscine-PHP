@@ -1,6 +1,4 @@
-#!/usr/bin/php
 <?php
-
 	function ft_split($str)
 	{
 		$str = trim($str);
@@ -8,5 +6,4 @@
 		sort($ret);
 		return $ret;
 	}
-
 ?>
