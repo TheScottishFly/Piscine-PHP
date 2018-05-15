@@ -4,14 +4,10 @@ date_default_timezone_set('Europe/Paris');
 
 function check_f($argv)
 {
-	if ((preg_match("/(^[L|l]undi|^[M|m]ardi|^[M|m]ercredi|^[J|j]eudi|^[V|v]endredi|^[S|s]amedi|^[D|d]imanche) {1}([0-9]{1,2}) {1}([J|j]anvier|[F|f][e|é]vrier|[M|m]ars|[A|a]vril|[M|m]ai|[J|j]uin|[J|j]uillet|[A|a]o[u|û]t|[S|s]eptembre|[O|o]ctobre|[N|n]ovembre|[D|d][e|é]cembre) {1}[0-9]{4} {1}[0-9]{2}:[0-9]{2}:[0-9]{2}$/", $argv)) != 0)
-	{
-		return (TRUE);
-	}
-	else{
-		return (FALSE);
-	}
-
+	if (preg_match("/(^[L|l]undi|^[M|m]ardi|^[M|m]ercredi|^[J|j]eudi|^[V|v]endredi|^[S|s]amedi|^[D|d]imanche) {1}([0-9]{1,2}) {1}([J|j]anvier|[F|f][e|é]vrier|[M|m]ars|[A|a]vril|[M|m]ai|[J|j]uin|[J|j]uillet|[A|a]o[u|û]t|[S|s]eptembre|[O|o]ctobre|[N|n]ovembre|[D|d][e|é]cembre) {1}[0-9]{4} {1}[0-9]{2}:[0-9]{2}:[0-9]{2}$/", $argv) != 0)
+		return (true);
+	else
+		return (false);
 }
 
 function get_num($s1)
@@ -43,11 +39,8 @@ function get_num($s1)
 }
 if ($argc > 1)
 {
-	if (check_f($argv[1]) == FALSE)
-	{
-		echo "Wrong Format\n";
-		exit ();
-	}
+	if (!check_f($argv[1]))
+		exit("Wrong Format\n");
 	else
 	{
 		preg_match("(^[L|l]undi|^[M|m]ardi|^[M|m]ercredi|^[J|j]eudi|^[V|v]endredi|^[S|s]amedi|^[D|d]imanche)", $argv[1], $jour);
@@ -62,8 +55,7 @@ if ($argc > 1)
 		$min[0] = substr($min[0], 0, 2);
 		preg_match("/:[0-9]{2}$/", $argv[1], $sec);
 		$sec[0] = substr($sec[0], 1);
-		echo mktime($heure[0], $min[0], $sec[0], $m, $num[0], $annee[0]);
-		echo "\n";
+		echo mktime($heure[0], $min[0], $sec[0], $m, $num[0], $annee[0])."\n";
 	}
 }
 ?>
