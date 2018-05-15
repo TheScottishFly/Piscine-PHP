@@ -5,10 +5,13 @@
 		$v = $argv[1];
 		$a = array();
 		while ($argv[$i]) {
-			$arg = explode(":", $argv[$i]);
-			$key = $arg[0];
-			$value = $arg[1];
-			$a[$key] = $value;
+			$arg = explode(":", trim($argv[$i]));
+			if (count($arg) == 2)
+			{
+				$key = trim($arg[0]);
+				$value = trim($arg[1]);
+				$a[$key] = $value;
+			}
 			$i += 1;
 		}
 		if (array_key_exists($v, $a))

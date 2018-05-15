@@ -16,4 +16,5 @@
 				echo "Le chiffre $input est Impair\n";
 		}
 	}
+	fclose($stdin);
 ?>
