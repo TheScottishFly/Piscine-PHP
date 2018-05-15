@@ -18,17 +18,15 @@
 		return (0);
 	}
 	
-	if ($argc != 2){
-		echo "Incorrect Parameters\n";
-		exit();
-	}
+	if ($argc != 2)
+		exit("Incorrect Parameters\n");
+	$a = preg_split('/\s+/', trim($argv[1]));
+	if (count($a) != 3)
+		exit("Incorrect Parameters\n");
 	$argv[1] = preg_replace('/\s+/', '', $argv[1]);
 	$op = find_op($argv[1]);
 	if ($op == 0)
-	{
-		echo "Syntax Error\n";
-		exit();
-	}
+		exit("Syntax Error\n");
 	$arr = preg_split("/(-|\/|%|\*|\+)/", $argv[1], -1, PREG_SPLIT_NO_EMPTY);
 	if(is_numeric($arr[0]) && is_numeric($arr[1]))
 	{
