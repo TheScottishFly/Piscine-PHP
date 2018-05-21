@@ -1,1 +1,1 @@
-CREATE DATABASE db_grosnet-;
+CREATE DATABASE IF NOT EXISTS db_grosnet-;
