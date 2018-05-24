@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<style>
+		.container{
+			margin: 0 auto;
+		}
+		.calc{
+			margin: 0 auto;
+			width: 500px;
+		}
+		input[type="text"]{
+			width: 28px;
+		}
+		input, select, span{
+			margin: 0 4px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="calc">
+			<h1>Super calculator</h1>
+			<input type="text" name="first">
+			<select name="op" id="op">
+				<option value="plus">+</option>
+				<option value="deduct">-</option>
+				<option value="multiply">*</option>
+				<option value="divide">/</option>
+				<option value="modulo">%</option>
+			</select>
+			<input type="text" name="second">
+			<input type="submit" name="submit" value="Try me!">
+		</div>
+	</div>
+<script type="text/javascript">
+
+	window.setInterval(function () {
+	 	alert("Please, use me...");
+	}, 30000);
+
+	function isInt(n) {
+	   return n % 1 === 0;
+	};
+
+	$( "input[type=submit]" ).click(function() {
+		let first = $('input[name=first]').val();
+		let second = $('input[name=second]').val();
+		let f_val = Number(first);
+		let s_val = Number(second);
+		if (isNaN(f_val) || isNaN(s_val)){
+			alert("Error  :(");
+			console.log("Error  :(");
+			return (1);
+		}
+		let select = $('select[name=op]').val();
+	    if (f_val >= 0 && s_val >= 0 && isInt(f_val) && isInt(s_val)){
+			let result;
+	    	switch(select) {
+			    case "plus":
+			        result = f_val + s_val;
+			        alert(result);
+					console.log(result);
+			        break;
+			    case "deduct":
+			        result = f_val - s_val;
+			        alert(result);
+					console.log(result);
+			        break;
+		        case "multiply":
+		        	result = f_val * s_val;
+		        	alert(result);
+					console.log(result);
+		        	break;
+		        case "divide":
+		        	if (s_val === 0){
+		        		alert("It’s over 9000!");
+		        		console.log("It’s over 9000!");
+		        		break;
+		        	} else {
+		        		result = f_val / s_val;
+		        		alert(result);
+						console.log(result);
+		        	}
+		        	break;
+		        case "modulo":
+		        	if (s_val === 0){
+		        		alert("It’s over 9000!");
+		        		console.log("It’s over 9000!");
+		        		break;
+		        	} else {
+		        		result = f_val % s_val;
+		        		alert(result);
+						console.log(result);
+		        	}
+		        	break;
+			    default:
+			        operation = false;
+			}
+		
+		} else {
+			alert("Error  :(");
+			console.log("Error  :(");
+		}
+	});
+</script>
+</body>
+</html>
