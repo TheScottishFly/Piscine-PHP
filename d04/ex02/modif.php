@@ -12,9 +12,8 @@
         {
             $user["passwd"] = $newpw;
             file_put_contents("../private/passwd", serialize($a));
-            echo "OK\n";
-            return ;
+            exit("OK\n");
         }
     }
-    echo "ERROR\n";
+    exit("ERROR\n");
 ?>

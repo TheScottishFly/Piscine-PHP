@@ -1,8 +1,6 @@
 <?php
 session_start();
-if (isset($_GET['login']) && $_GET['login'] != NULL &&
-	isset($_GET['passwd']) && $_GET['passwd'] != NULL &&
-	($_GET['submit'] && $_GET['submit'] === "OK"))
+if (isset($_GET['login']) && isset($_GET['passwd']) && $_GET['login'] !== "" && $_GET['passwd'] !== "" && isset($_GET['submit']) && $_GET["submit"] == 'OK')
 {
 	$_SESSION['login'] = $_GET['login'];
 	$_SESSION['passwd'] = $_GET['passwd'];
@@ -11,9 +9,17 @@ if (isset($_GET['login']) && $_GET['login'] != NULL &&
 <html>
 	<body>
 		<form method="get" action="index.php">
-			Identifiant: <input type="text" name="login" value="<?PHP echo $_SESSION['login'];?>" />
+		<?php if (isset($_SESSION['login'])) { ?>
+			Identifiant: <input required type="text" name="login" value=<?php echo $_SESSION['login']; ?> />
+		<?php } else { ?>
+			Identifiant: <input required type="text" name="login" value="" />
+		<?php } ?>
 			<br />
-			Mot de passe : <input type="password" name="passwd" value="<?PHP echo $_SESSION['passwd'];?>" />
+		<?php if (isset($_SESSION['passwd'])) { ?>
+			Mot de passe: <input required type="password" name="passwd" value=<?php echo $_SESSION['passwd']; ?> />
+		<?php } else { ?>
+			Mot de passe: <input required type="password" name="passwd" value="" />
+		<?php } ?>
 			<input type="submit" name = "submit" value="OK" />
 		</form>
 	</body>

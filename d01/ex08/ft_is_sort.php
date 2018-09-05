@@ -1,5 +1,4 @@
 <?php
-
 	function ft_is_sort($tab)
 	{
 		$ts = $tab;
@@ -9,5 +8,4 @@
 				return false;
 		return true;
 	}
-
 ?>

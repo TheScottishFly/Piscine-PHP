@@ -24,7 +24,7 @@ case ("%") :
 	echo $num1 % $num2;
 	break;
 default:
-	echo "Syntax Error\n";
-	exit();
+	exit("Syntax Error\n");
 }
 echo "\n";
+?>

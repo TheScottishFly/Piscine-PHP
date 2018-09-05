@@ -6,7 +6,7 @@
         foreach ($a as $user)
         {
             if ($user["login"] == $login && $user["passwd"] == $password)
-                return TRUE;
+                return true;
         }
-        return FALSE;
+        return false;
     }

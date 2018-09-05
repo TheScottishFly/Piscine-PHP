@@ -1,6 +1,5 @@
 #!/usr/bin/php
 <?php
-
 	if ($argc > 1)
 	{
 		$arg = trim($argv[1]);
@@ -10,5 +9,4 @@
 		$str = implode(" ", $t);
 		echo "$str\n";
 	}
-
 ?>

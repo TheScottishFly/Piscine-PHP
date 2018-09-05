@@ -1,14 +1,11 @@
 <?php
-	if (array_key_exists("action", $_GET))
+	if (isset($_GET["action"]) && isset($_GET["name"]))
 	{
-		$tab = $_GET;
-		if (array_key_exists("name", $tab))
-		{
-			if ($tab['action'] == "set" && array_key_exists("value", $tab))
-				setcookie($tab['name'], $tab['value']);
-			else if ($tab['action'] == "get" && $_COOKIE[$tab['name']] != NULL)
-				echo ($_COOKIE[$tab['name']])."\n";
-			else if ($tab['action'] == "del")
-				setcookie($tab['name'], NULL, -1);
-		}
+		if ($_GET['action'] == "set" && isset($_GET["value"]))
+			setcookie($_GET['name'], $_GET['value'], time() + (86400 * 30));
+		else if ($_GET['action'] == "get" && isset($_COOKIE[$_GET['name']]))
+			echo ($_COOKIE[$_GET['name']])."\n";
+		else if ($_GET['action'] == "del")
+			setcookie($_GET['name'], NULL, time() - (86400 * 30)));
 	}
+?>
