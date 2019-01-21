@@ -5,7 +5,7 @@ $file = fopen("/var/run/utmpx", "r");
 while ($line = fread($file, 628))
 {
 	$array = unpack('a256user/a4id/a32term/ipid/itype/Itime', $line);
-	if ($array[type] == 7)
-		echo trim($array[user]) . " " . trim($array[term]) . "  " . date("M j H:i", $array[time]) . " \n";
+	if ($array['type'] == 7)
+		echo trim($array['user']) . "   " . trim($array['term']) . "   " . date("M j H:i", $array['time']) . " \n";
 }
 ?>
