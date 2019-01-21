@@ -10,7 +10,8 @@ function get_content($URL){
 }
 
 function download($url, $folder, $base_url){
-	$filename = end(explode("/", $url));
+	$expl = explode("/", $url);
+	$filename = end($expl);
 	$fp = fopen("$folder/$filename", 'w');
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_FILE, $fp);
