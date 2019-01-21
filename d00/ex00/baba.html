@@ -2,43 +2,27 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <title>B.A.BA</title>
-    <style>
-        body {
-            background-color: pink;
-        }
-
-        h1 {
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .shop {
-            float: left;
-        }
-
-        hr {
-            clear: both;
-        }
-
-        .copyright {
-            font-style: italic;
-            font-family: monospace;
-            text-align: right;
-        }
-    </style>
 </head>
-<body>
-    <h1>Bienvenue è</h1>
-    <div class="shop">
-        <img src="http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Web-Amazon-Metro-icon.png" alt="">
-        <p><a href="http://www.amazon.com">amazon</a></p>
+<body class="bg-pink mt-4">
+    <h1 class="text-white text-center mb-4">C lexXxo ZeR0 du Dé->0 !</h1>
+    <div class="flex flex-row w-full h-full">
+        <div class="flex w-1/2 h-full shop">
+            <img src="https://www.presse-citron.net/wordpress_prod/wp-content/uploads/2018/10/Amazon-logo.jpg" alt="" class="w-full h-64">
+        </div>
+        <div class="flex w-1/2 h-full shop">
+            <img src="https://actu.meilleurmobile.com/wp-content/uploads/2018/06/Logo-Fnac.jpg" alt="" class="w-full h-64">
+        </div>
     </div>
-    <div class="shop">
-        <img src="https://pbs.twimg.com/profile_images/544853720450609153/JCuxgS04.png" alt="">
-        <p><a href="http://www.fnac.fr">fnac</a></p>
+    <div class="flex flex-row w-full h-full border-b border-black pb-4">
+        <div class="flex w-1/2 h-full shop justify-center mt-4">
+            <p><a href="http://www.amazon.com" class="text-md text-grey-lightest hover:text-grey-light no-underline" target="_blank">amazon</a></p>
+        </div>
+        <div class="flex w-1/2 h-full shop justify-center mt-4">
+            <p><a href="http://www.fnac.fr" class="text-md text-grey-lightest hover:text-grey-light no-underline" target="_blank">fnac</a></p>
+        </div>
     </div>
-    <hr/>
-    <p class="copyright">© grosnet- 2018</p>
+    <p class="copyright pr-2 pt-2 text-right italic font-mono">© grosnet- 2019</p>
 </body>
 </html>
