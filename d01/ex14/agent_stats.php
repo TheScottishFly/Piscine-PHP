@@ -11,7 +11,7 @@ if ($argc == 2)
 		$a = array();
 		foreach ($tab as $k => $v)
 		{
-			if ($v[2] != "moulinette" && is_numeric($v[1]))
+			if (isset($v[2]) && $v[2] != "moulinette" && is_numeric($v[1]))
 				$a[] = $v[1];
 		}
 		echo array_sum($a) / count($a) . "\n";
@@ -26,7 +26,7 @@ if ($argc == 2)
 				$a[$v[0]]["note"] = $a[$v[0]]["note"] + $v[1];
 				$a[$v[0]]["div"]++;
 			}
-			else if (is_numeric($v[1]) && $v[2] != "moulinette")
+			else if (isset($v[1]) && is_numeric($v[1]) && isset($v[2]) && $v[2] != "moulinette")
 			{
 				$a[$v[0]]["note"] = $v[1];
 				$a[$v[0]]["div"] = 1;
@@ -44,9 +44,9 @@ if ($argc == 2)
 		{
 			if (array_key_exists($v[0], $a) && is_numeric($v[1]) && $v[2] != "moulinette")
 				$a[$v[0]][] = $v[1];
-			else if (is_numeric($v[1]) && $v[2] != "moulinette")
+			else if (isset($v[1]) && is_numeric($v[1]) && isset($v[2]) && $v[2] != "moulinette")
 				$a[$v[0]] = array($v[1]);
-			else if (is_numeric($v[1]) && $v[2] == "moulinette")
+			else if (isset($v[1]) && is_numeric($v[1]) && isset($v[2]) && $v[2] == "moulinette")
 				$m[$v[0]]= $v[1];
 		}
 		ksort($a);
