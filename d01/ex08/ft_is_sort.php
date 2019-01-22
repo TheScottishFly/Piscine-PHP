@@ -3,7 +3,7 @@
 	{
 		$ts = $tab;
 		sort($ts);
-		for ($i = 0; $i <= count($ts); $i++)
+		for ($i = 0; $i < count($ts); $i++)
 			if ($tab[$i] != $ts[$i])
 				return false;
 		return true;
