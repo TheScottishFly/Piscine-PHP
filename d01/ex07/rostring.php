@@ -6,7 +6,7 @@
 		$t = explode(" ", $arg);
 		$t[] = $t[0];
 		unset($t[0]);
-		$str = implode(" ", $t);
+		$str = implode(" ", array_filter($t));
 		echo "$str\n";
 	}
 ?>
