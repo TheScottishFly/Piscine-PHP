@@ -1,6 +1,8 @@
 #!/usr/bin/php
 <?php
-if ($argc == 3 && file_exists($argv[1]) && end(explode(".", $argv[1])) == "csv")
+if (isset($argv[1]))
+    $expl = explode(".", $argv[1]);
+if ($argc == 3 && file_exists($argv[1]) && end($expl) == "csv")
 {
 	$stdin = fopen($argv[1], 'r');
 	$keys = explode(";", trim(fgets($stdin)));
@@ -11,7 +13,8 @@ if ($argc == 3 && file_exists($argv[1]) && end(explode(".", $argv[1])) == "csv")
 	{
 		$values = explode(";", trim(fgets($stdin)));
 		foreach ($keys as $i => $v)
-			${$v}[$values[$k]] = $values[$i];
+		    if (array_key_exists($k, $values) && array_key_exists($i, $values))
+    			${$v}[$values[$k]] = $values[$i];
 	}
 	fclose($stdin);
 	while (1)
@@ -20,8 +23,7 @@ if ($argc == 3 && file_exists($argv[1]) && end(explode(".", $argv[1])) == "csv")
 		$input = trim(fgets(STDIN));
 		if (feof(STDIN) == true)
 			exit("");
-		$ret = eval($input);
-		echo $ret;
+		eval($input);
 	}
 }
 ?>
