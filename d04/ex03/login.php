@@ -1,6 +1,8 @@
 <?php
     session_start();
     include("auth.php");
+    if (!isset($_GET["login"]) || !isset($_GET["passwd"]))
+        exit("ERROR\n");
     $login = $_GET["login"];
     $passwd = $_GET["passwd"];
     if (auth($login, $passwd) == true)

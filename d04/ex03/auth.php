@@ -2,7 +2,7 @@
     function auth($login, $passwd)
     {
         $a = unserialize(file_get_contents("../private/passwd"));
-        $password = hash("sha256", $passwd);
+        $password = hash("sha512", $passwd);
         foreach ($a as $user)
         {
             if ($user["login"] == $login && $user["passwd"] == $password)
