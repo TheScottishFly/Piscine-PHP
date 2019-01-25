@@ -1,5 +1,5 @@
 <?php
-    if (!file_exists("../private/passwd") || !isset($_POST["login"]) || !isset($_POST["passwd"]) || !isset($_POST["submit"]) || $_POST["login"] === "" || $_POST["oldpw"] === "" || $_POST["newpw"] === "" || $_POST["submit"] !== "OK")
+    if (!file_exists("../private/passwd") || !isset($_POST["login"]) || !isset($_POST["oldpw"])  || !isset($_POST["newpw"]) || !isset($_POST["submit"]) || $_POST["login"] === "" || $_POST["oldpw"] === "" || $_POST["newpw"] === "" || $_POST["submit"] !== "OK")
     	exit("ERROR\n");
 
     $a = unserialize(file_get_contents("../private/passwd"));
