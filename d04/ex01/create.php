@@ -1,4 +1,4 @@
-php<?php
+<?php
     if (!isset($_POST["login"]) || !isset($_POST["passwd"]) || !isset($_POST["submit"]) || $_POST["login"] === "" || $_POST["passwd"] === "" || $_POST["submit"] !== 'OK') {
         echo "ERROR\n";
     } else {
