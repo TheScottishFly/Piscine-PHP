@@ -5,7 +5,7 @@ class Camera
     private $_proj;
     private $_tR;
     private $_tT;
-    private $_origine;
+    private $_origin;
     private $_width;
     private $_height;
     private $_ratio;
@@ -14,8 +14,9 @@ class Camera
     
     public function __construct($array)
     {
-        $this->_origine = $array['origin'];
-        $this->_tT = new Matrix(array('preset' => Matrix::TRANSLATION, 'vtc' => $this->_origine->opposite()));
+        $this->_origin = $array['origin'];
+        $vt = new Vector(array('dest' => $this->_origin));
+        $this->_tT = new Matrix(array('preset' => Matrix::TRANSLATION, 'vtc' => $vt->opposite()));
         $this->_tR = $this->_transpose($array['orientation']);
         $this->_width = (float)$array['width'] / 2;
         $this->_height = (float)$array['height'] / 2;
@@ -41,23 +42,24 @@ class Camera
     }
     
     private function _transpose(Matrix $m){
-        $tmp[0] = $m->matrix[0];
-        $tmp[1] = $m->matrix[4];
-        $tmp[2] = $m->matrix[8];
-        $tmp[3] = $m->matrix[12];
-        $tmp[4] = $m->matrix[1];
-        $tmp[5] = $m->matrix[5];
-        $tmp[6] = $m->matrix[9];
-        $tmp[7] = $m->matrix[13];
-        $tmp[8] = $m->matrix[2];
-        $tmp[9] = $m->matrix[6];
-        $tmp[10] = $m->matrix[10];
-        $tmp[11] = $m->matrix[14];
-        $tmp[12] = $m->matrix[3];
-        $tmp[13] = $m->matrix[7];
-        $tmp[14] = $m->matrix[11];
-        $tmp[15] = $m->matrix[15];
-        $m->matrix = $tmp;
+        $matrix = $m->getMatrix();
+        $tmp[0] = $matrix[0];
+        $tmp[1] = $matrix[4];
+        $tmp[2] = $matrix[8];
+        $tmp[3] = $matrix[12];
+        $tmp[4] = $matrix[1];
+        $tmp[5] = $matrix[5];
+        $tmp[6] = $matrix[9];
+        $tmp[7] = $matrix[13];
+        $tmp[8] = $matrix[2];
+        $tmp[9] = $matrix[6];
+        $tmp[10] = $matrix[10];
+        $tmp[11] = $matrix[14];
+        $tmp[12] = $matrix[3];
+        $tmp[13] = $matrix[7];
+        $tmp[14] = $matrix[11];
+        $tmp[15] = $matrix[15];
+        $m->setMatrix($tmp);
         return ($m);
     }
     
@@ -70,7 +72,7 @@ class Camera
     function __toString()
     {
         $tmp = "Camera( \n";
-        $tmp .= "+ Origine: ".$this->_origine."\n";
+        $tmp .= "+ Origine: ".$this->_origin."\n";
         $tmp .= "+ tT:\n".$this->_tT."\n";
         $tmp .= "+ tR:\n".$this->_tR."\n";
         $tmp .= "+ tR->mult( tT ):\n".$this->_tR->mult($this->_tT)."\n";
