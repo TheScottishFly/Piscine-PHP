@@ -88,6 +88,16 @@ class Matrix
         }
     }
 
+    public function setMatrix($newm)
+    {
+        $this->matrix = $newm;
+    }
+
+    public function getMatrix()
+    {
+        return $this->matrix;
+    }
+
     private function identity($scale)
     {
         $this->matrix[0] = $scale;
