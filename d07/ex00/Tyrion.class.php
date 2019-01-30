@@ -1,4 +1,5 @@
 <?php
+
 class Tyrion extends Lannister 
 {
 	public function getSize() 
@@ -7,4 +8,5 @@ class Tyrion extends Lannister
 		return "Short";
 	}
 }
+
 ?>

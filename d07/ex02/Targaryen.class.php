@@ -10,7 +10,7 @@ Class Targaryen
 			self::$flag++;
 			return 'burns alive';
 		}
-		else if (self::$flag == 1)
+		else
 		{
 			return 'emerges naked but unharmed';	
 		}

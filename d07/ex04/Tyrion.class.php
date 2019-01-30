@@ -2,15 +2,15 @@
 
 Class Tyrion
 {
-	public function sleepWith($ck_class)
+	public function sleepWith($person)
 	{
-		if ($ck_class instanceof Jaime || $ck_class instanceof Cersei)
+		if ($person instanceof Jaime || $person instanceof Cersei)
 		{
-			print "Not even if I'm drunk !"."\n";
+			echo "Not even if I'm drunk !".PHP_EOL;
 		}
-		else if ($ck_class instanceof Sansa)
+		else if ($person instanceof Sansa)
 		{
-			print "Let's do this."."\n";
+			echo "Let's do this.".PHP_EOL;
 
 		}
 		return;
