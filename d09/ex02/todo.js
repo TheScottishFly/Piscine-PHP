@@ -1,92 +1,63 @@
-function openModal() {
-    let todo = prompt("Please enter your new TODO", "");
-    if ((todo.trim()) != "") {
-        addTask(todo);
+let ft_list = document.getElementById('ft_list');
+let cookie = [];
+
+window.onload = function () {
+    document.querySelector("#new").addEventListener("click", newTodo);
+    ft_list = document.querySelector("#ft_list");
+    ft_list.innerHTML = "";
+    let d_c = getCookie('todo');
+    if (d_c) {
+        cookie = JSON.parse(d_c);
+        cookie.forEach(function (e) {
+            addTodo(e);
+        });
     }
+};
+
+function newTodo(){
+    let todo = prompt("New TODO", '');
+    if (todo !== '') {
+        addTodo(todo)
+    }
+    cookie.unshift(todo);
+    setCookie('todo', JSON.stringify(cookie), 7);
 }
-	function setCookie(cname, cvalue, exdays) {
-	    var d = new Date();
-	    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-	    var expires = "expires="+ d.toUTCString();
-	    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	}
 
-	function getCookie(cname) {
-	    var name = cname + "=";
-	    var decodedCookie = decodeURIComponent(document.cookie);
-	    var ca = decodedCookie.split(';');
-	    for(var i = 0; i <ca.length; i++) {
-	        var c = ca[i];
-	        while (c.charAt(0) == ' ') {
-	            c = c.substring(1);
-	        }
-	        if (c.indexOf(name) == 0) {
-	            return c.substring(name.length, c.length);
-	        }
-	    }
-	    return "";
-	}
+function addTodo(todo){
+    let div = document.createElement("div");
+    div.innerHTML = todo;
+    div.addEventListener("click", deleteTodo);
+    ft_list.insertBefore(div, ft_list.firstChild);
+}
 
-	window.onload = function () {
-		if (getCookie("todo") != ""){
-			data.tasks = JSON.parse(getCookie("todo"));
-			data.id = data.tasks.length;
-			view.render();
-		}	
-	} 
+function deleteTodo(){
+    if (confirm("Done")){
+        this.parentElement.removeChild(this);
+    }
+    cookie.splice(cookie.indexOf(this), 1);
+    setCookie('todo', JSON.stringify(cookie), 7);
+}
 
- //TODO change arr length!
-	const data = {
-		tasks: [],
-		id: 0
-	};
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
 
-	function addTask(text){
-		data.tasks.push({
-			uid: data.id++,
-			text
-		});
-		view.render();
-		setCookie("todo", JSON.stringify(data.tasks), 1);
-	}
+function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
 
-	let model = {
-		getActiveTask: function() {
-			let activeTasks = data.tasks;
-			return activeTasks;
-		},
-		removeTask: function(id){
-			if (confirm("Do you really want to delete this task?"))
-			{
-				let elem = data.tasks.map(obj => obj.uid == id);
-				let posInArr = elem.indexOf(true);
-				data.tasks.splice(posInArr, 1);
-				setCookie("todo", JSON.stringify(data.tasks), 1);
-				view.render();
-			}
-		},
-	}
-
-	let view = {
-		render: function() {
-			let list = document.getElementById("ft_list");
-			if (data.tasks){
-				let taskList = list.querySelector(".task-list");
-				taskList.innerHTML = "";
-				model.getActiveTask().map(function(task){
-					let taskTemplate = document.querySelector("#template").innerHTML;
-					taskTemplate = taskTemplate.replace(/{{text}}/g, task.text)
-													.replace(/{{id}}/g, task.uid);
-				let elem = document.createElement("li");
-				elem.className = "task";
-				elem.id = task.uid;
-				elem.setAttribute('onclick', 'model.removeTask(this.id)');
-				elem.innerHTML = taskTemplate;
-				taskList.append(elem);
-				});
-			}
-		}
-	};
-	
-
-
+    for (let i = 0; i < ca.length; i++) {
+        let  c = ca[i];
+        while (c.charAt(0) === ' ')
+			c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0)
+        	return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}

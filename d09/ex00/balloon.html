@@ -1,65 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Balloon</title>
-	<style>
-		.container{
-			margin: 0 auto;
-		}
-		.balloon{
-			margin: 0 auto;
-			background: red;
-			width: 200px;
-			height: 200px;
-			border-radius: 50%;
-		}
-	</style>
-</head>
-<body>
-	<div class="container">
-		<div  class="balloon" id="balloon">
+	<head>
+		<meta charset="UTF-8">
+		<title>Balloon</title>
+		<style>
+			.container{
+				margin: 0 auto;
+			}
+			#balloon{
+				margin: 0 auto;
+				background: red;
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="balloon">
+			</div>
 		</div>
-	</div>
-	<script type="text/javascript">
-		const balloon = document.getElementById("balloon");
-		balloon.addEventListener("click", inflate);
-		balloon.addEventListener("mouseout", getOut);
+		<script type="text/javascript">
+			const colors = ["red", "green", "blue"];
+			const balloon = document.getElementById("balloon");
+			balloon.addEventListener("click", increase);
+			balloon.addEventListener("mouseout", decrease);
 
-		const colors = ["red", "green", "blue"];
-		let i = 0;
-		
-		function inflate() {
-			let ball_width = balloon.offsetWidth;
-			let ball_heigth = balloon.offsetHeight;
-			let step = 10;
-			if (ball_width >= 415)
-			{
-				balloon.style.width =  "200px";
-				balloon.style.height = "200px";
-				i = 2;
-			} else {
-				balloon.style.width = ball_width + step + "px";
-				balloon.style.height = ball_heigth + step + "px";
-			}
-			if (i == colors.length - 1)
-				i = -1;
-			balloon.style.background = colors[++i];
-		}
+			let i = 0;
 
-		function getOut() {
-			let ball_width = balloon.offsetWidth;
-			let ball_heigth = balloon.offsetHeight;
-			if (ball_width > 200)
-			{
-				balloon.style.width = ball_width - 5 + "px";
-				balloon.style.height = ball_heigth - 5 + "px";
-				if (i == 0)
-					i = colors.length;
-				balloon.style.background = colors[--i];
-				console.log(balloon.style.background);
+			function increase() {
+				let width_b = balloon.offsetWidth, height_b = balloon.offsetHeight;
+
+				if (width_b > 420)
+				{
+					balloon.style.width = "200px";
+					balloon.style.height = "200px";
+					i = 2;
+				} else {
+					balloon.style.width = width_b + 10 + "px";
+					balloon.style.height = height_b + 10 + "px";
+				}
+
+				if (i === colors.length - 1)
+					i = -1;
+
+				balloon.style.background = colors[++i];
 			}
-		}
-	</script>
-</body>
+
+			function decrease() {
+				let width_b = balloon.offsetWidth, height_b = balloon.offsetHeight;
+
+				if (width_b > 200)
+				{
+					balloon.style.width = width_b - 5 + "px";
+					balloon.style.height = height_b - 5 + "px";
+
+					if (i === 0)
+						i = colors.length;
+
+					balloon.style.background = colors[--i];
+				}
+			}
+		</script>
+	</body>
 </html>
